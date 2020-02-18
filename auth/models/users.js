@@ -13,7 +13,7 @@ const Users = mongoose.Schema({
     type: String,
     required: true,
     default: 'guest',
-    enum: ['admin', 'editor', 'producer', 'guest'],
+    enum: ['admin', 'editor', 'producer', 'guest', 'godEmperor'],
   },
 });
 
@@ -52,7 +52,6 @@ Users.methods.generateToken = function() {
 };
 
 Users.statics.authenticateWithToken = async function(token) {
-  console.log('top of authenticatewithtoken');
   try {
     let tokenObject = jwt.verify(token, secret);
     let user = await this.findOne({ username: tokenObject.username });
@@ -65,8 +64,6 @@ Users.statics.authenticateWithToken = async function(token) {
 Users.virtual('accesses', acl[this.role]);
 
 Users.methods.can = function(task) {
-  console.log('What is acl schema?', acl.schema.obj);
-  console.log('What is role?', this.role);
   return acl.schema.obj[this.role].includes(task);
 };
 

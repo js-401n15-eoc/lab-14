@@ -14,17 +14,7 @@ let users = {
   user: { username: 'user', password: 'password', role: 'user' },
 };
 
-// beforeAll(async done => {
-//   const adminUser = await Users.save(users.admin);
-//   const editorUser = await Users.save(users.editor);
-//   const userUser = await Users.save(users.user);
-//   done();
-// });
-
 describe('Auth Middleware', () => {
-  // admin:password: YWRtaW46cGFzc3dvcmQ=
-  // admin:foo: YWRtaW46Zm9v
-
   it('allows a user to authenticate on github through oauth', () => {
     let req = {
       query: {
@@ -39,20 +29,3 @@ describe('Auth Middleware', () => {
     });
   });
 });
-
-// describe('bearer auth middleware', () => {
-//   const token =
-//     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImVjYW9pbGUiLCJpYXQiOjE1ODE4Nzg3NzV9.0rYOkwV1STtHOLbwiar575OZDGZf-TD4byrz31QKxkc';
-//   it('allows a user to access the secret page if they have authorization', () => {
-//     let req = {
-//       headers: {
-//         authorization: `Authorization:Bearer ${token}`,
-//       },
-//     };
-//     let res = {};
-//     let next = jest.fn();
-//     bearerAuth(req, res, next).then(() => {
-//       expect(next).toHaveBeenCalled();
-//     });
-//   });
-// });
